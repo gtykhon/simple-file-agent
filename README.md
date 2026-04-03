@@ -1,4 +1,6 @@
 # Simple File Agent
+![FSM Architecture](docs/fsm_architecture.png)
+
 
 A minimal, self-hostable agentic coding assistant that performs file operations via natural language.
 
