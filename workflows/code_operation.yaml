@@ -1,0 +1,38 @@
+name: code_operation
+description: >
+  Main agent workflow. Drives a single natural-language file operation
+  through classify → plan → execute → verify → complete.
+
+initial_state: classify
+
+states:
+
+  classify:
+    description: Determine what type of operation the user wants.
+    transitions:
+      success: plan
+      error:   error
+
+  plan:
+    description: Build a structured JSON plan for the operation.
+    transitions:
+      success: execute
+      error:   error
+
+  execute:
+    description: Run the operation (file I/O or code generation + quality gate).
+    transitions:
+      success: verify
+      error:   error
+
+  verify:
+    description: Confirm the operation had the intended effect.
+    transitions:
+      success: complete
+      error:   error
+
+  complete:
+    description: Terminal — operation succeeded.
+
+  error:
+    description: Terminal — operation failed.
